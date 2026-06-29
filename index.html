@@ -566,6 +566,14 @@ function doLogout() {
   auth.signOut();
 }
 
+// Handle redirect result first, then listen for auth state
+auth.getRedirectResult().catch(e => {
+  const el = document.getElementById('authError');
+  if (el) { el.textContent = e.message; el.style.display = 'block'; }
+  document.getElementById('screen-loading').style.display = 'none';
+  document.getElementById('screen-auth').style.display = 'flex';
+});
+
 auth.onAuthStateChanged(async (user) => {
   if (user) {
     currentUser = user;

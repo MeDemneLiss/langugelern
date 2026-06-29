@@ -580,7 +580,13 @@ auth.onAuthStateChanged(async (user) => {
     document.getElementById('screen-auth').style.display = 'none';
     document.getElementById('screen-loading').style.display = 'flex';
     document.getElementById('app').style.display = 'none';
-    await loadUserData();
+    try {
+      await loadUserData();
+    } catch(e) {
+      console.error('loadUserData error:', e);
+      wordsCache = getSampleWords();
+      historyCache = [];
+    }
     startApp();
   } else {
     currentUser = null;

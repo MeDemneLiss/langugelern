@@ -552,12 +552,16 @@ let currentUser = null;
 async function signInWithGoogle() {
   const el = document.getElementById('authError');
   el.style.display = 'none';
+  const provider = new firebase.auth.GoogleAuthProvider();
   try {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithRedirect(provider);
+    await auth.signInWithPopup(provider);
   } catch(e) {
-    el.textContent = e.message;
-    el.style.display = 'block';
+    if (e.code === 'auth/popup-blocked' || e.code === 'auth/operation-not-supported-in-this-environment') {
+      try { await auth.signInWithRedirect(provider); } catch(e2) { el.textContent = e2.message; el.style.display = 'block'; }
+    } else if (e.code !== 'auth/popup-closed-by-user') {
+      el.textContent = e.message;
+      el.style.display = 'block';
+    }
   }
 }
 
@@ -565,14 +569,6 @@ function doLogout() {
   closeProfileMenu();
   auth.signOut();
 }
-
-// Handle redirect result first, then listen for auth state
-auth.getRedirectResult().catch(e => {
-  const el = document.getElementById('authError');
-  if (el) { el.textContent = e.message; el.style.display = 'block'; }
-  document.getElementById('screen-loading').style.display = 'none';
-  document.getElementById('screen-auth').style.display = 'flex';
-});
 
 auth.onAuthStateChanged(async (user) => {
   if (user) {

@@ -554,11 +554,9 @@ async function signInWithGoogle() {
   el.style.display = 'none';
   try {
     const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider);
+    await auth.signInWithRedirect(provider);
   } catch(e) {
-    el.textContent = e.code === 'auth/popup-blocked'
-      ? 'Всплывающее окно заблокировано. Разрешите попапы для этого сайта.'
-      : e.message;
+    el.textContent = e.message;
     el.style.display = 'block';
   }
 }

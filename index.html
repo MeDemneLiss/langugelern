@@ -29,21 +29,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 button{cursor:pointer;font-family:inherit;font-size:inherit;border:none;background:none}
 input,textarea,select{font-family:inherit;font-size:inherit;color:var(--text)}
 
-/* AUTH SCREEN */
-#screen-auth{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg3)}
+/* AUTH / LOADING */
+#screen-auth,#screen-loading{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg3)}
 .auth-logo{width:64px;height:64px;background:var(--primary);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
 .auth-logo svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.auth-card{background:var(--bg);border-radius:var(--radius);border:1px solid var(--border);padding:24px;width:100%;max-width:380px}
-.auth-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px}
-.auth-tab{flex:1;padding:10px;text-align:center;font-size:14px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent}
-.auth-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
-.users-list{display:flex;flex-direction:column;gap:8px}
-.user-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:border-color .15s}
-.user-item:hover{border-color:var(--primary)}
-.user-avatar{width:40px;height:40px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--primary-dark);flex-shrink:0}
-.user-info{flex:1}
-.user-name{font-weight:600;font-size:15px}
-.user-meta{font-size:12px;color:var(--text3)}
+.auth-card{background:var(--bg);border-radius:var(--radius);border:1px solid var(--border);padding:28px;width:100%;max-width:360px}
+.btn-google{display:flex;align-items:center;gap:12px;width:100%;padding:14px 20px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:var(--bg);color:var(--text);font-size:15px;font-weight:500;cursor:pointer;transition:all .15s;justify-content:center}
+.btn-google:hover{border-color:var(--primary);background:var(--primary-light)}
+.btn-google svg{width:20px;height:20px;flex-shrink:0}
 
 /* NAV */
 .nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid var(--border);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
@@ -61,7 +54,8 @@ input,textarea,select{font-family:inherit;font-size:inherit;color:var(--text)}
 .header-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);color:var(--text2)}
 .header-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .user-chip{display:flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:20px;background:var(--bg2);border:1px solid var(--border);cursor:pointer}
-.user-chip .ava{width:26px;height:26px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary-dark)}
+.user-chip .ava{width:26px;height:26px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary-dark);overflow:hidden;flex-shrink:0}
+.user-chip .ava img{width:100%;height:100%;object-fit:cover}
 .user-chip span{font-size:13px;font-weight:500;color:var(--text2)}
 
 /* CARDS */
@@ -91,7 +85,6 @@ textarea.input{resize:vertical;min-height:80px}
 .badge-success{background:var(--success-light);color:var(--success)}
 .badge-danger{background:var(--danger-light);color:var(--danger)}
 .badge-warning{background:var(--warning-light);color:var(--warning)}
-
 .divider{height:1px;background:var(--border);margin:12px 0}
 
 /* TRANSLATOR */
@@ -104,7 +97,6 @@ textarea.input{resize:vertical;min-height:80px}
 .translate-toolbar{display:flex;align-items:center;padding:8px 12px;border-top:1px solid var(--border);gap:8px}
 .translate-toolbar .count{font-size:12px;color:var(--text3);flex:1}
 .translate-result{padding:14px;font-size:18px;font-weight:500;color:var(--primary);min-height:60px;line-height:1.4}
-.translate-result-meta{padding:0 14px 14px;font-size:13px;color:var(--text2);line-height:1.6}
 .word-forms h4{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:6px}
 .form-chip{display:inline-flex;align-items:center;gap:4px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:13px;margin:2px;color:var(--text2)}
 .form-chip b{color:var(--text)}
@@ -162,7 +154,7 @@ textarea.input{resize:vertical;min-height:80px}
 .letter-box.correct{border-color:var(--success);color:var(--success)}
 .letter-box.wrong{border-color:var(--danger);color:var(--danger)}
 
-/* PAIRS — fixed layout */
+/* PAIRS */
 .pairs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .pair-col{display:flex;flex-direction:column;gap:8px}
 .pair-card{padding:12px 10px;border-radius:var(--radius-sm);border:1.5px solid var(--border);text-align:center;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;background:var(--bg);line-height:1.3}
@@ -230,7 +222,6 @@ textarea.input{resize:vertical;min-height:80px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .highlight{background:var(--primary-light);color:var(--primary-dark);padding:1px 3px;border-radius:3px;font-weight:600}
 
-/* user select modal */
 .profile-menu{position:fixed;top:60px;right:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:8px;z-index:150;min-width:180px;display:none;box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .profile-menu.open{display:block}
 .pm-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;color:var(--text)}
@@ -240,52 +231,29 @@ textarea.input{resize:vertical;min-height:80px}
 </head>
 <body>
 
+<!-- LOADING SCREEN -->
+<div id="screen-loading" style="display:flex">
+  <div class="auth-logo">
+    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+  </div>
+  <div style="margin-top:16px"><div class="spinner"></div></div>
+</div>
+
 <!-- AUTH SCREEN -->
 <div id="screen-auth" style="display:none">
   <div class="auth-logo">
     <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
   </div>
-  <div style="text-align:center;margin-bottom:24px">
-    <h1 style="font-size:24px;font-weight:700;margin-bottom:4px">LangFlow</h1>
+  <div style="text-align:center;margin-bottom:28px">
+    <h1 style="font-size:26px;font-weight:700;margin-bottom:6px">LangFlow</h1>
     <p style="font-size:14px;color:var(--text2)">Изучение иностранных слов</p>
   </div>
   <div class="auth-card">
-    <div class="auth-tabs">
-      <div class="auth-tab active" onclick="switchAuthTab('login')" id="at-login">Войти</div>
-      <div class="auth-tab" onclick="switchAuthTab('register')" id="at-register">Регистрация</div>
-    </div>
-
-    <!-- Login -->
-    <div id="auth-login">
-      <div id="usersList" class="users-list" style="margin-bottom:16px"></div>
-      <div class="divider"></div>
-      <div class="form-group" style="margin-top:12px">
-        <label>Имя пользователя</label>
-        <input type="text" class="input" id="loginUsername" placeholder="Введите имя...">
-      </div>
-      <div class="form-group">
-        <label>Пароль</label>
-        <input type="password" class="input" id="loginPassword" placeholder="Введите пароль...">
-      </div>
-      <button class="btn btn-primary btn-full" onclick="doLogin()">Войти</button>
-    </div>
-
-    <!-- Register -->
-    <div id="auth-register" style="display:none">
-      <div class="form-group">
-        <label>Имя пользователя</label>
-        <input type="text" class="input" id="regUsername" placeholder="Придумайте имя...">
-      </div>
-      <div class="form-group">
-        <label>Пароль</label>
-        <input type="password" class="input" id="regPassword" placeholder="Придумайте пароль...">
-      </div>
-      <div class="form-group">
-        <label>Повторите пароль</label>
-        <input type="password" class="input" id="regPassword2" placeholder="Повторите пароль...">
-      </div>
-      <button class="btn btn-primary btn-full" onclick="doRegister()">Создать аккаунт</button>
-    </div>
+    <button class="btn-google" onclick="signInWithGoogle()">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Войти через Google
+    </button>
+    <div id="authError" style="display:none;margin-top:14px;padding:10px 14px;background:var(--danger-light);color:var(--danger);border-radius:var(--radius-sm);font-size:13px"></div>
   </div>
 </div>
 
@@ -294,10 +262,6 @@ textarea.input{resize:vertical;min-height:80px}
 
 <!-- PROFILE MENU -->
 <div class="profile-menu" id="profileMenu">
-  <div class="pm-item" onclick="switchAccount()">
-    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    Сменить аккаунт
-  </div>
   <div class="pm-item" onclick="doLogout()">
     <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
     Выйти
@@ -312,7 +276,7 @@ textarea.input{resize:vertical;min-height:80px}
       <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
     </button>
     <div class="user-chip" onclick="toggleProfileMenu()" id="userChip">
-      <div class="ava" id="userAva">?</div>
+      <div class="ava" id="userAva"></div>
       <span id="userName">...</span>
     </div>
   </div>
@@ -344,7 +308,6 @@ textarea.input{resize:vertical;min-height:80px}
         <option value="ja">Японский</option>
       </select>
     </div>
-
     <div class="translate-box">
       <textarea id="translateInput" class="translate-input" placeholder="Введите слово или фразу..." rows="3" oninput="onTranslateInput()"></textarea>
       <div class="translate-toolbar">
@@ -357,7 +320,6 @@ textarea.input{resize:vertical;min-height:80px}
         </button>
       </div>
     </div>
-
     <div class="translate-box" id="resultBox" style="display:none">
       <div style="display:flex;align-items:flex-start;padding:14px 14px 8px">
         <div style="flex:1">
@@ -374,15 +336,10 @@ textarea.input{resize:vertical;min-height:80px}
       </div>
       <div id="wordForms" style="padding:0 14px 14px;display:none">
         <div class="divider" style="margin:0 0 10px"></div>
-        <div class="word-forms">
-          <h4>Формы слова</h4>
-          <div id="formsContainer"></div>
-        </div>
+        <div class="word-forms"><h4>Формы слова</h4><div id="formsContainer"></div></div>
       </div>
     </div>
-
     <div id="translateLoading" style="display:none;text-align:center;padding:20px"><div class="spinner"></div></div>
-
     <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px">
       <span style="font-size:13px;font-weight:600;color:var(--text2)">История поиска</span>
       <button class="btn-ghost" style="font-size:13px;padding:4px 8px" onclick="clearHistory()">Очистить</button>
@@ -486,7 +443,6 @@ textarea.input{resize:vertical;min-height:80px}
         Создать текст
       </button>
     </div>
-
     <div id="generatedTextCard" style="display:none" class="card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
         <span style="font-size:14px;font-weight:600;color:var(--text2)">Текст для чтения</span>
@@ -501,7 +457,6 @@ textarea.input{resize:vertical;min-height:80px}
       </div>
       <div id="generatedText" style="font-size:15px;line-height:1.9;color:var(--text)"></div>
     </div>
-
     <div class="card">
       <div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text2)">Произношение слова</div>
       <div style="display:flex;gap:8px">
@@ -541,7 +496,6 @@ textarea.input{resize:vertical;min-height:80px}
     Тексты
   </button>
 </nav>
-
 </div><!-- /app -->
 
 <!-- MODAL: Add/Edit Word -->
@@ -573,165 +527,194 @@ textarea.input{resize:vertical;min-height:80px}
 
 <div class="toast" id="toast"></div>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+
 <script>
+// ===================== FIREBASE =====================
+const firebaseConfig = {
+  apiKey: "AIzaSyBhwi_A8Cj0IrNhDC-LB3mgPYX1uxoVv8I",
+  authDomain: "langlearn-6f9b8.firebaseapp.com",
+  projectId: "langlearn-6f9b8",
+  storageBucket: "langlearn-6f9b8.firebasestorage.app",
+  messagingSenderId: "241223927237",
+  appId: "1:241223927237:web:16e3941db7e0752efe77ac"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const fsdb = firebase.firestore();
+
 // ===================== AUTH =====================
-function getUsers() { return JSON.parse(localStorage.getItem('lf_users')||'[]'); }
-function saveUsers(u) { localStorage.setItem('lf_users', JSON.stringify(u)); }
-function getCurrentUser() { const id=localStorage.getItem('lf_current'); if(!id) return null; return getUsers().find(u=>u.id===id)||null; }
-function setCurrentUser(id) { localStorage.setItem('lf_current',id); }
+let currentUser = null;
 
-function hashPass(s){ let h=0; for(let i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;} return h.toString(36); }
-
-function switchAuthTab(tab){
-  document.getElementById('auth-login').style.display = tab==='login'?'':'none';
-  document.getElementById('auth-register').style.display = tab==='register'?'':'none';
-  document.getElementById('at-login').classList.toggle('active',tab==='login');
-  document.getElementById('at-register').classList.toggle('active',tab==='register');
-  if(tab==='login') renderUsersList();
-}
-
-function renderUsersList(){
-  const users = getUsers();
-  const el = document.getElementById('usersList');
-  if(!users.length){ el.innerHTML='<p style="font-size:13px;color:var(--text3);text-align:center;padding:8px 0">Нет аккаунтов. Зарегистрируйтесь.</p>'; return; }
-  el.innerHTML = users.map(u=>`
-    <div class="user-item" onclick="quickLogin('${u.id}')">
-      <div class="user-avatar">${u.username[0].toUpperCase()}</div>
-      <div class="user-info">
-        <div class="user-name">${escHtml(u.username)}</div>
-        <div class="user-meta">${getWords(u.id).length} слов</div>
-      </div>
-      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--text3);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polyline points="9 18 15 12 9 6"/></svg>
-    </div>
-  `).join('');
-}
-
-function quickLogin(id){
-  setCurrentUser(id);
-  startApp();
-}
-
-function doLogin(){
-  const username = document.getElementById('loginUsername').value.trim();
-  const password = document.getElementById('loginPassword').value;
-  if(!username){ showToast('Введите имя пользователя'); return; }
-  const users = getUsers();
-  const user = users.find(u=>u.username.toLowerCase()===username.toLowerCase());
-  if(!user){ showToast('Пользователь не найден'); return; }
-  if(user.password !== hashPass(password)){ showToast('Неверный пароль'); return; }
-  setCurrentUser(user.id);
-  startApp();
-}
-
-function doRegister(){
-  const username = document.getElementById('regUsername').value.trim();
-  const password = document.getElementById('regPassword').value;
-  const password2 = document.getElementById('regPassword2').value;
-  if(!username){ showToast('Введите имя'); return; }
-  if(username.length < 2){ showToast('Имя слишком короткое'); return; }
-  if(!password){ showToast('Введите пароль'); return; }
-  if(password.length < 4){ showToast('Пароль мин. 4 символа'); return; }
-  if(password !== password2){ showToast('Пароли не совпадают'); return; }
-  const users = getUsers();
-  if(users.find(u=>u.username.toLowerCase()===username.toLowerCase())){ showToast('Имя уже занято'); return; }
-  const newUser = { id: Date.now().toString(), username, password: hashPass(password), created: Date.now() };
-  users.push(newUser);
-  saveUsers(users);
-  // Seed sample words
-  seedSampleWords(newUser.id);
-  setCurrentUser(newUser.id);
-  startApp();
-}
-
-function doLogout(){
-  localStorage.removeItem('lf_current');
-  closeProfileMenu();
-  showAuth();
-}
-
-function switchAccount(){
-  localStorage.removeItem('lf_current');
-  closeProfileMenu();
-  showAuth();
-}
-
-function toggleProfileMenu(){
-  document.getElementById('profileMenu').classList.toggle('open');
-}
-function closeProfileMenu(){ document.getElementById('profileMenu').classList.remove('open'); }
-
-document.addEventListener('click', e=>{ if(!e.target.closest('#profileMenu')&&!e.target.closest('#userChip')) closeProfileMenu(); });
-
-function showAuth(){
-  document.getElementById('screen-auth').style.display='flex';
-  document.getElementById('app').style.display='none';
-  renderUsersList();
-}
-
-function startApp(){
-  document.getElementById('screen-auth').style.display='none';
-  document.getElementById('app').style.display='block';
-  const user = getCurrentUser();
-  if(user){
-    document.getElementById('userAva').textContent = user.username[0].toUpperCase();
-    document.getElementById('userName').textContent = user.username;
+async function signInWithGoogle() {
+  const el = document.getElementById('authError');
+  el.style.display = 'none';
+  try {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    await auth.signInWithPopup(provider);
+  } catch(e) {
+    el.textContent = e.code === 'auth/popup-blocked'
+      ? 'Всплывающее окно заблокировано. Разрешите попапы для этого сайта.'
+      : e.message;
+    el.style.display = 'block';
   }
-  renderHistory();
-  renderVocab();
-  updateFavHint();
 }
 
-// ===================== DATA LAYER (per-user) =====================
-function uid(){ const u=getCurrentUser(); return u?u.id:'guest'; }
-function getWords(id){ return JSON.parse(localStorage.getItem('lf_words_'+(id||uid()))||'[]'); }
-function saveWords(w,id){ localStorage.setItem('lf_words_'+(id||uid()), JSON.stringify(w)); }
-function getHistory(){ return JSON.parse(localStorage.getItem('lf_history_'+uid())||'[]'); }
-function saveHistory(h){ localStorage.setItem('lf_history_'+uid(), JSON.stringify(h)); }
+function doLogout() {
+  closeProfileMenu();
+  auth.signOut();
+}
+
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
+    currentUser = user;
+    document.getElementById('screen-auth').style.display = 'none';
+    document.getElementById('screen-loading').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+    await loadUserData();
+    startApp();
+  } else {
+    currentUser = null;
+    wordsCache = [];
+    historyCache = [];
+    document.getElementById('screen-loading').style.display = 'none';
+    document.getElementById('screen-auth').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+  }
+});
+
+// ===================== DATA LAYER (Firestore) =====================
+let wordsCache = [];
+let historyCache = [];
+let saveTimer = null;
+
+async function loadUserData() {
+  try {
+    const doc = await fsdb.collection('users').doc(currentUser.uid).get();
+    if (doc.exists) {
+      const data = doc.data();
+      wordsCache = JSON.parse(data.words || '[]');
+      historyCache = JSON.parse(data.history || '[]');
+    } else {
+      wordsCache = getSampleWords();
+      historyCache = [];
+      await persistData();
+    }
+  } catch(e) {
+    console.error('Firestore load error:', e);
+    wordsCache = [];
+    historyCache = [];
+  }
+}
+
+async function persistData() {
+  if (!currentUser) return;
+  try {
+    await fsdb.collection('users').doc(currentUser.uid).set({
+      words: JSON.stringify(wordsCache),
+      history: JSON.stringify(historyCache),
+      updatedAt: Date.now(),
+      email: currentUser.email,
+      displayName: currentUser.displayName
+    }, { merge: true });
+  } catch(e) { console.error('Firestore save error:', e); }
+}
+
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(persistData, 1500);
+}
 
 const DB = {
-  get words(){ return getWords(); },
-  set words(v){ saveWords(v); }
+  get words() { return wordsCache; },
+  set words(v) { wordsCache = v; scheduleSave(); }
 };
 
-function seedSampleWords(id){
-  saveWords([
+function getHistory() { return historyCache; }
+function saveHistory(h) { historyCache = h; scheduleSave(); }
+
+async function trackActivity(type) {
+  if (!currentUser) return;
+  const today = new Date().toISOString().slice(0, 10);
+  try {
+    await fsdb.collection('users').doc(currentUser.uid)
+      .collection('activity').doc(today)
+      .set({
+        [type]: firebase.firestore.FieldValue.increment(1),
+        date: today,
+        lastSeen: Date.now()
+      }, { merge: true });
+  } catch(e) {}
+}
+
+function getSampleWords() {
+  return [
     {id:1,word:'serendipity',translation:'случайная удача',example:'Finding that book was pure serendipity.',phonetic:'[ˌserənˈdɪpɪti]',tags:['существительное','C1'],forms:[{label:'Adj',form:'serendipitous'}],favorite:true,status:'new',created:Date.now()-86400000*5,easiness:2.5,interval:1,repetitions:0,nextReview:Date.now()-86400000,lang:'en'},
     {id:2,word:'ephemeral',translation:'мимолётный, кратковременный',example:'Fame can be ephemeral.',phonetic:'[ɪˈfem(ə)r(ə)l]',tags:['прилагательное','C1'],forms:[{label:'Adv',form:'ephemerally'}],favorite:true,status:'learning',created:Date.now()-86400000*4,easiness:2.3,interval:3,repetitions:1,nextReview:Date.now()-86400000*2,lang:'en'},
     {id:3,word:'resilience',translation:'стойкость, жизнеспособность',example:'Her resilience amazed everyone.',phonetic:'[rɪˈzɪlɪəns]',tags:['существительное','B2'],forms:[{label:'Adj',form:'resilient'}],favorite:false,status:'new',created:Date.now()-86400000*3,easiness:2.5,interval:1,repetitions:0,nextReview:Date.now(),lang:'en'},
     {id:4,word:'meticulous',translation:'тщательный, педантичный',example:'She was meticulous in her research.',phonetic:'[mɪˈtɪkjʊləs]',tags:['прилагательное','B2'],forms:[{label:'Adv',form:'meticulously'}],favorite:true,status:'known',created:Date.now()-86400000*10,easiness:2.7,interval:21,repetitions:4,nextReview:Date.now()+86400000*21,lang:'en'},
     {id:5,word:'pragmatic',translation:'прагматичный, практичный',example:'We need a pragmatic solution.',phonetic:'[præɡˈmætɪk]',tags:['прилагательное','B2'],forms:[],favorite:false,status:'learning',created:Date.now()-86400000*2,easiness:2.4,interval:2,repetitions:1,nextReview:Date.now()-86400000,lang:'en'},
     {id:6,word:'ambiguous',translation:'неоднозначный, двусмысленный',example:'The instructions were ambiguous.',phonetic:'[æmˈbɪɡjuəs]',tags:['прилагательное','B2'],forms:[],favorite:true,status:'new',created:Date.now()-86400000,easiness:2.5,interval:1,repetitions:0,nextReview:Date.now(),lang:'en'},
-  ], id);
+  ];
 }
+
+// ===================== UI INIT =====================
+function startApp() {
+  document.getElementById('screen-loading').style.display = 'none';
+  document.getElementById('screen-auth').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+
+  const ava = document.getElementById('userAva');
+  if (currentUser.photoURL) {
+    ava.innerHTML = `<img src="${currentUser.photoURL}" alt="">`;
+  } else {
+    ava.textContent = (currentUser.displayName || currentUser.email || 'U')[0].toUpperCase();
+  }
+  document.getElementById('userName').textContent = (currentUser.displayName || '').split(' ')[0] || 'Пользователь';
+
+  renderHistory();
+  renderVocab();
+  updateFavHint();
+  loadVoices();
+}
+
+function toggleProfileMenu() { document.getElementById('profileMenu').classList.toggle('open'); }
+function closeProfileMenu() { document.getElementById('profileMenu').classList.remove('open'); }
+document.addEventListener('click', e => {
+  if (!e.target.closest('#profileMenu') && !e.target.closest('#userChip')) closeProfileMenu();
+});
 
 // ===================== SM-2 =====================
-function sm2(card, quality){
-  let {easiness=2.5,interval=1,repetitions=0}=card;
-  const q=quality===0?1:quality===1?3:5;
+function sm2(card, quality) {
+  let {easiness=2.5,interval=1,repetitions=0} = card;
+  const q = quality===0?1:quality===1?3:5;
   if(q>=3){if(repetitions===0)interval=1;else if(repetitions===1)interval=6;else interval=Math.round(interval*easiness);repetitions++;}
   else{repetitions=0;interval=1;}
-  easiness=Math.max(1.3,easiness+0.1-(5-q)*(0.08+(5-q)*0.02));
-  return{easiness,interval,repetitions,nextReview:Date.now()+interval*86400000,status:repetitions>=3?'known':repetitions>=1?'learning':'new'};
+  easiness = Math.max(1.3, easiness+0.1-(5-q)*(0.08+(5-q)*0.02));
+  return {easiness,interval,repetitions,nextReview:Date.now()+interval*86400000,status:repetitions>=3?'known':repetitions>=1?'learning':'new'};
 }
-function getDueWords(){ const now=Date.now(); return DB.words.filter(w=>!w.nextReview||w.nextReview<=now); }
+function getDueWords() { const now=Date.now(); return DB.words.filter(w=>!w.nextReview||w.nextReview<=now); }
 
 // ===================== NAVIGATION =====================
-function showScreen(name){
+function showScreen(name) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('screen-'+name).classList.add('active');
   document.getElementById('nav-'+name).classList.add('active');
   if(name==='vocab') renderVocab();
   if(name==='review') renderReview();
-  if(name==='texts'){ renderVoices(); updateFavHint(); }
-  if(name==='exercise'){ document.getElementById('exerciseMenu').style.display=''; document.getElementById('exercisePlay').style.display='none'; }
+  if(name==='texts'){renderVoices();updateFavHint();}
+  if(name==='exercise'){document.getElementById('exerciseMenu').style.display='';document.getElementById('exercisePlay').style.display='none';}
   closeProfileMenu();
 }
 
 // ===================== TRANSLATOR =====================
 let translateTimer=null, currentTranslation=null;
 
-function onTranslateInput(){
+function onTranslateInput() {
   const val=document.getElementById('translateInput').value;
   document.getElementById('charCount').textContent=val.length+' / 500';
   clearTimeout(translateTimer);
@@ -739,16 +722,16 @@ function onTranslateInput(){
   translateTimer=setTimeout(translate,500);
 }
 
-function hideResult(){ document.getElementById('resultBox').style.display='none'; currentTranslation=null; }
+function hideResult() { document.getElementById('resultBox').style.display='none'; currentTranslation=null; }
 
-async function translate(){
+async function translate() {
   const text=document.getElementById('translateInput').value.trim();
   if(!text){hideResult();return;}
   const from=document.getElementById('langFrom').value;
   const to=document.getElementById('langTo').value;
   document.getElementById('translateLoading').style.display='block';
   document.getElementById('resultBox').style.display='none';
-  try{
+  try {
     const url=`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`;
     const r=await fetch(url);
     const data=await r.json();
@@ -765,14 +748,14 @@ async function translate(){
     hist.unshift({word:text,translation:translated,lang:from,toLang:to,time:Date.now()});
     saveHistory(hist.slice(0,50));
     renderHistory();
-  }catch(e){
+  } catch(e) {
     document.getElementById('translateResult').textContent='Ошибка перевода. Проверьте подключение.';
     document.getElementById('resultBox').style.display='block';
   }
   document.getElementById('translateLoading').style.display='none';
 }
 
-function showWordForms(word){
+function showWordForms(word) {
   const w=word.toLowerCase();
   const forms=[];
   if(!w.endsWith('s')&&!w.endsWith('ed')&&!w.endsWith('ing')){
@@ -783,26 +766,27 @@ function showWordForms(word){
   document.getElementById('formsContainer').innerHTML=forms.map(f=>`<span class="form-chip"><span style="color:var(--text3)">${f.label}:</span> <b>${f.form}</b></span>`).join('');
 }
 
-function swapLangs(){
+function swapLangs() {
   const f=document.getElementById('langFrom'),t=document.getElementById('langTo');
   [f.value,t.value]=[t.value,f.value];
   const result=document.getElementById('translateResult').textContent;
   if(result){document.getElementById('translateInput').value=result;onTranslateInput();}
 }
 
-function clearInput(){document.getElementById('translateInput').value='';document.getElementById('charCount').textContent='0 / 500';hideResult();}
+function clearInput() { document.getElementById('translateInput').value='';document.getElementById('charCount').textContent='0 / 500';hideResult(); }
 
-function saveCurrentTranslation(){
-  if(!currentTranslation)return;
+function saveCurrentTranslation() {
+  if(!currentTranslation) return;
   const words=DB.words;
   if(words.find(w=>w.word.toLowerCase()===currentTranslation.word.toLowerCase())){showToast('Уже в словаре');return;}
   words.push({id:Date.now(),word:currentTranslation.word,translation:currentTranslation.translation,lang:currentTranslation.lang,example:'',phonetic:'',tags:[],forms:[],favorite:false,status:'new',created:Date.now(),easiness:2.5,interval:1,repetitions:0,nextReview:Date.now()});
   DB.words=words;
+  trackActivity('word_added');
   showToast('Сохранено в словарь!');
   document.getElementById('saveWordBtn').style.color='var(--success)';
 }
 
-function renderHistory(){
+function renderHistory() {
   const hist=getHistory();
   const el=document.getElementById('historyList');
   if(!el) return;
@@ -819,34 +803,35 @@ function renderHistory(){
   `).join('');
 }
 
-function loadHistory(word){document.getElementById('translateInput').value=word;onTranslateInput();}
-function clearHistory(){saveHistory([]);renderHistory();}
+function loadHistory(word) { document.getElementById('translateInput').value=word;onTranslateInput(); }
+function clearHistory() { saveHistory([]);renderHistory(); }
 
-function quickSave(word,translation,lang){
+function quickSave(word,translation,lang) {
   const words=DB.words;
   if(words.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast('Уже в словаре');return;}
   words.push({id:Date.now(),word,translation,lang,example:'',phonetic:'',tags:[],forms:[],favorite:false,status:'new',created:Date.now(),easiness:2.5,interval:1,repetitions:0,nextReview:Date.now()});
   DB.words=words;
+  trackActivity('word_added');
   showToast('Сохранено!');
 }
 
 // ===================== VOCABULARY =====================
 let vocabFilter='all', vocabTab='words', editWordId=null;
 
-function switchVocabTab(tab){
+function switchVocabTab(tab) {
   vocabTab=tab;
   document.querySelectorAll('#screen-vocab .tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&tab==='words')||(i===1&&tab==='import')));
   tab==='import'?renderImport():renderVocab();
 }
 
-function setFilter(el,f){
+function setFilter(el,f) {
   vocabFilter=f;
   document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
   renderVocab();
 }
 
-function renderVocab(){
+function renderVocab() {
   if(vocabTab!=='words') return;
   const search=(document.getElementById('vocabSearch')?.value||'').toLowerCase();
   let words=DB.words;
@@ -888,7 +873,7 @@ function renderVocab(){
   `).join('');
 }
 
-function renderImport(){
+function renderImport() {
   document.getElementById('vocabContent').innerHTML=`
     <div class="import-area" id="importArea" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondrop="dropFile(event)" ondragleave="this.classList.remove('drag')">
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -905,11 +890,11 @@ function renderImport(){
   `;
 }
 
-async function handleFileUpload(file){ if(!file) return; parseAndImport(await file.text()); }
-function dropFile(e){ e.preventDefault(); document.getElementById('importArea')?.classList.remove('drag'); handleFileUpload(e.dataTransfer?.files?.[0]); }
-function importFromText(){ parseAndImport(document.getElementById('pasteImport')?.value||''); }
+async function handleFileUpload(file) { if(!file) return; parseAndImport(await file.text()); }
+function dropFile(e) { e.preventDefault();document.getElementById('importArea')?.classList.remove('drag');handleFileUpload(e.dataTransfer?.files?.[0]); }
+function importFromText() { parseAndImport(document.getElementById('pasteImport')?.value||''); }
 
-function parseAndImport(text){
+function parseAndImport(text) {
   const lines=text.split('\n').filter(l=>l.trim());
   const words=DB.words;
   let added=0,skipped=0;
@@ -924,11 +909,12 @@ function parseAndImport(text){
     added++;
   }
   DB.words=words;
+  if(added>0) trackActivity('word_added');
   showToast(`Импортировано: ${added}, пропущено: ${skipped}`);
   if(added>0){switchVocabTab('words');renderVocab();}
 }
 
-function openAddWord(wordId){
+function openAddWord(wordId) {
   editWordId=wordId||null;
   document.getElementById('modalTitle').textContent=wordId?'Редактировать слово':'Добавить слово';
   document.getElementById('extraForms').innerHTML=`<div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" class="input" placeholder="Метка (пр. Past)" style="width:100px"><input type="text" class="input" placeholder="Форма" style="flex:1"></div>`;
@@ -951,7 +937,7 @@ function openAddWord(wordId){
   setTimeout(()=>document.getElementById('mWord').focus(),100);
 }
 
-function addFormRow(){
+function addFormRow() {
   const fc=document.getElementById('extraForms');
   const row=document.createElement('div');
   row.style.cssText='display:flex;gap:6px;margin-bottom:6px';
@@ -959,7 +945,7 @@ function addFormRow(){
   fc.appendChild(row);
 }
 
-function saveWord(){
+function saveWord() {
   const word=document.getElementById('mWord').value.trim();
   const translation=document.getElementById('mTranslation').value.trim();
   if(!word||!translation){showToast('Заполните слово и перевод');return;}
@@ -975,6 +961,7 @@ function saveWord(){
   } else {
     if(words.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast('Слово уже в словаре');return;}
     words.push({id:Date.now(),word,translation,example:document.getElementById('mExample').value,phonetic:document.getElementById('mPhonetic').value,tags:document.getElementById('mTags').value.split(',').map(s=>s.trim()).filter(Boolean),forms,favorite:false,status:'new',created:Date.now(),easiness:2.5,interval:1,repetitions:0,nextReview:Date.now()});
+    trackActivity('word_added');
   }
   DB.words=words;
   closeModal('addWordModal');
@@ -983,13 +970,13 @@ function saveWord(){
   showToast(editWordId?'Обновлено!':'Слово добавлено!');
 }
 
-function toggleFav(id){
+function toggleFav(id) {
   const words=DB.words;
   const w=words.find(x=>x.id===id);
   if(w){w.favorite=!w.favorite;DB.words=words;renderVocab();updateFavHint();}
 }
 
-function deleteWord(id){
+function deleteWord(id) {
   if(!confirm('Удалить слово?')) return;
   DB.words=DB.words.filter(w=>w.id!==id);
   renderVocab();
@@ -997,7 +984,7 @@ function deleteWord(id){
   showToast('Удалено');
 }
 
-function showWordDetail(id){
+function showWordDetail(id) {
   const w=DB.words.find(x=>x.id===id);
   if(!w) return;
   const sl={new:'Новое',learning:'Учится',known:'Знаю'};
@@ -1032,7 +1019,7 @@ function showWordDetail(id){
 // ===================== EXERCISES =====================
 let exState={};
 
-function startExercise(type){
+function startExercise(type) {
   const words=DB.words;
   if(words.length<4){showToast('Нужно минимум 4 слова в словаре');return;}
   document.getElementById('exerciseMenu').style.display='none';
@@ -1041,7 +1028,7 @@ function startExercise(type){
   nextQuestion();
 }
 
-function nextQuestion(){
+function nextQuestion() {
   if(exState.current>=exState.total){showExerciseResult();return;}
   const w=exState.words[exState.current];
   if(exState.type==='choice') renderChoiceQuestion(w);
@@ -1050,9 +1037,9 @@ function nextQuestion(){
   else if(exState.type==='pairs') renderPairsQuestion();
 }
 
-function progressHTML(){ return `<div class="progress-bar"><div class="progress-fill" style="width:${exState.current/exState.total*100}%"></div></div><div style="font-size:13px;color:var(--text2);margin:10px 0 2px">${exState.current+1} / ${exState.total}</div>`; }
+function progressHTML() { return `<div class="progress-bar"><div class="progress-fill" style="width:${exState.current/exState.total*100}%"></div></div><div style="font-size:13px;color:var(--text2);margin:10px 0 2px">${exState.current+1} / ${exState.total}</div>`; }
 
-function renderChoiceQuestion(w){
+function renderChoiceQuestion(w) {
   const others=shuffle(DB.words.filter(x=>x.id!==w.id)).slice(0,3);
   const options=shuffle([w,...others]);
   document.getElementById('exercisePlay').innerHTML=`
@@ -1069,7 +1056,7 @@ function renderChoiceQuestion(w){
   `;
 }
 
-function checkChoice(btn,chosen,correct){
+function checkChoice(btn,chosen,correct) {
   btn.closest('.options-grid').querySelectorAll('.option-btn').forEach(b=>{b.disabled=true;});
   if(chosen===correct){btn.classList.add('correct');exState.correct++;}
   else{btn.classList.add('wrong');btn.closest('.options-grid').querySelectorAll('.option-btn').forEach(b=>{if(b.textContent===correct)b.classList.add('reveal');});}
@@ -1077,7 +1064,7 @@ function checkChoice(btn,chosen,correct){
   setTimeout(nextQuestion,1200);
 }
 
-function renderWriteQuestion(w){
+function renderWriteQuestion(w) {
   document.getElementById('exercisePlay').innerHTML=`
     ${progressHTML()}
     <div class="exercise-card">
@@ -1095,7 +1082,7 @@ function renderWriteQuestion(w){
   document.getElementById('writeAnswer').focus();
 }
 
-function updateLetterHint(correct){
+function updateLetterHint(correct) {
   const typed=document.getElementById('writeAnswer')?.value||'';
   for(let i=0;i<correct.length;i++){
     const box=document.getElementById('lb'+i);
@@ -1105,7 +1092,7 @@ function updateLetterHint(correct){
   }
 }
 
-function checkWrite(correct){
+function checkWrite(correct) {
   const ans=(document.getElementById('writeAnswer')?.value||'').trim().toLowerCase();
   const ok=ans===correct.toLowerCase();
   if(ok) exState.correct++;
@@ -1119,7 +1106,7 @@ function checkWrite(correct){
   setTimeout(nextQuestion,1500);
 }
 
-function renderSentenceQuestion(w){
+function renderSentenceQuestion(w) {
   const sentenceWords=w.example?w.example.split(' ').filter(Boolean):[w.word,...shuffle(DB.words.filter(x=>x.id!==w.id)).slice(0,4).map(x=>x.word)];
   const shuffled=shuffle([...sentenceWords]);
   document.getElementById('exercisePlay').innerHTML=`
@@ -1138,7 +1125,7 @@ function renderSentenceQuestion(w){
   `;
 }
 
-function addWordToSentence(word,chipIdx){
+function addWordToSentence(word,chipIdx) {
   const chip=document.getElementById('chip'+chipIdx);
   if(!chip||chip.classList.contains('used')) return;
   chip.classList.add('used');
@@ -1147,7 +1134,7 @@ function addWordToSentence(word,chipIdx){
   document.getElementById('sentenceBuilt').appendChild(sw);
 }
 
-function checkSentence(correct){
+function checkSentence(correct) {
   const built=[...document.querySelectorAll('#sentenceBuilt .sentence-word')].map(s=>s.textContent).join(' ');
   if(built.trim().toLowerCase()===correct.toLowerCase()) exState.correct++;
   showToast(built.trim().toLowerCase()===correct.toLowerCase()?'✓ Правильно!':'✗ '+correct);
@@ -1155,11 +1142,9 @@ function checkSentence(correct){
   setTimeout(nextQuestion,1800);
 }
 
-// PAIRS — English left, Russian right
-function renderPairsQuestion(){
+function renderPairsQuestion() {
   const all=DB.words;
   const subset=shuffle([...all]).slice(0,4);
-  // Left col = English words (shuffled order), Right col = Russian translations (shuffled independently)
   const leftOrder=shuffle([...subset]);
   const rightOrder=shuffle([...subset]);
   let selLeft=null,selRight=null;
@@ -1188,16 +1173,13 @@ function renderPairsQuestion(){
     if(matched.has(side+idx)) return;
     if(side==='l'){
       if(selLeft!==null) document.getElementById('l'+selLeft)?.classList.remove('selected');
-      selLeft=idx;
-      document.getElementById('l'+idx)?.classList.add('selected');
+      selLeft=idx;document.getElementById('l'+idx)?.classList.add('selected');
     } else {
       if(selRight!==null) document.getElementById('r'+selRight)?.classList.remove('selected');
-      selRight=idx;
-      document.getElementById('r'+idx)?.classList.add('selected');
+      selRight=idx;document.getElementById('r'+idx)?.classList.add('selected');
     }
     if(selLeft!==null&&selRight!==null){
-      const lId=leftOrder[selLeft].id;
-      const rId=rightOrder[selRight].id;
+      const lId=leftOrder[selLeft].id,rId=rightOrder[selRight].id;
       if(lId===rId){
         matched.add('l'+selLeft);matched.add('r'+selRight);
         exState.correct+=0.25;
@@ -1205,19 +1187,18 @@ function renderPairsQuestion(){
         if(matched.size===subset.length*2){exState.current++;setTimeout(nextQuestion,500);}
         else render();
       } else {
-        const lEl=document.getElementById('l'+selLeft);
-        const rEl=document.getElementById('r'+selRight);
+        const lEl=document.getElementById('l'+selLeft),rEl=document.getElementById('r'+selRight);
         lEl?.classList.add('wrong-match');rEl?.classList.add('wrong-match');
         setTimeout(()=>{lEl?.classList.remove('wrong-match','selected');rEl?.classList.remove('wrong-match','selected');selLeft=selRight=null;},700);
       }
     }
   };
-
   render();
 }
 
-function showExerciseResult(){
+function showExerciseResult() {
   const pct=Math.round(exState.correct/exState.total*100);
+  trackActivity('exercise');
   document.getElementById('exercisePlay').innerHTML=`
     <div class="exercise-card done-card">
       <div class="icon">${pct>=80?'🏆':pct>=50?'👍':'📚'}</div>
@@ -1234,7 +1215,7 @@ function showExerciseResult(){
 // ===================== REVIEW =====================
 let reviewQueue=[],currentCard=null,cardFlipped=false;
 
-function renderReview(){
+function renderReview() {
   const due=getDueWords(),total=DB.words.length;
   const cont=document.getElementById('reviewContent');
   if(total===0){cont.innerHTML=`<div class="done-card"><div class="icon">📖</div><h2>Добавьте слова</h2><p>Перейдите в словарь и добавьте слова</p></div>`;return;}
@@ -1247,7 +1228,7 @@ function renderReview(){
   showNextCard();
 }
 
-function showNextCard(){
+function showNextCard() {
   const cont=document.getElementById('reviewContent');
   const statsHTML=cont.querySelector('.stats-row')?.outerHTML||'';
   if(!reviewQueue.length){cont.innerHTML=statsHTML+`<div class="done-card"><div class="icon">✅</div><h2>Сессия завершена!</h2><p>Отличная работа!</p><button class="btn btn-primary" style="margin-top:16px" onclick="renderReview()">Обновить</button></div>`;return;}
@@ -1267,7 +1248,7 @@ function showNextCard(){
   `;
 }
 
-function flipCard(){
+function flipCard() {
   if(cardFlipped) return;
   cardFlipped=true;
   const fc=document.getElementById('flashcard');
@@ -1283,131 +1264,73 @@ function flipCard(){
   `;
 }
 
-function rateCard(quality){
+function rateCard(quality) {
   const words=DB.words,idx=words.findIndex(w=>w.id===currentCard.id);
   if(idx>=0){Object.assign(words[idx],sm2(words[idx],quality));DB.words=words;}
+  trackActivity('review');
   showNextCard();
 }
 
-function skipCard(){reviewQueue.push(currentCard);showNextCard();}
-function forceReview(){DB.words=DB.words.map(w=>({...w,nextReview:Date.now()}));renderReview();showToast('Очередь обновлена');}
+function skipCard() { reviewQueue.push(currentCard);showNextCard(); }
+function forceReview() { DB.words=DB.words.map(w=>({...w,nextReview:Date.now()}));renderReview();showToast('Очередь обновлена'); }
 
 // ===================== TEXT GENERATION =====================
 let generatedTextContent='';
 
-function updateFavHint(){
+function updateFavHint() {
   const el=document.getElementById('favWordsHint');
   if(!el) return;
   const favs=DB.words.filter(w=>w.favorite);
   el.textContent=favs.length?`Избранных слов: ${favs.length} — они будут встроены в текст`:'Нет избранных слов — добавьте ★ в словаре';
 }
 
-function generateText(){
+function generateText() {
   const favs=DB.words.filter(w=>w.favorite);
   const wordsToUse=favs.length?favs:DB.words.slice(0,6);
   if(!wordsToUse.length){showToast('Добавьте слова в словарь');return;}
-  const level=document.getElementById('genLevel')?.value||'B1';
   const topic=document.getElementById('genTopic')?.value||'travel';
-
-  // Sentence templates per topic
   const templates={
-    travel:[
-      'Every journey teaches us something new about the world and ourselves.',
-      'The best adventures begin when you step outside your comfort zone.',
-      'Traveling opens your mind to different cultures and perspectives.',
-      'The road less traveled often leads to the most beautiful destinations.',
-      'Each city has its own rhythm and energy that you can feel instantly.',
-      'Packing light is the secret to stress-free travel.',
-      'The memories you make while traveling last a lifetime.',
-    ],
-    food:[
-      'Cooking is an art form that brings people together.',
-      'The secret to a great dish lies in the quality of its ingredients.',
-      'Every culture expresses its identity through its traditional cuisine.',
-      'A shared meal is one of the most intimate human experiences.',
-      'The best recipes are passed down through generations of families.',
-      'Food has the power to transport you to another place and time.',
-    ],
-    science:[
-      'Modern science has transformed the way we understand the universe.',
-      'Every great discovery begins with a simple question.',
-      'Technology and innovation go hand in hand with scientific progress.',
-      'The natural world holds countless mysteries waiting to be explored.',
-      'Scientific thinking requires both creativity and rigorous analysis.',
-      'Each experiment brings us closer to understanding the truth.',
-    ],
-    daily:[
-      'Small daily habits shape the person we ultimately become.',
-      'A positive mindset can transform even the most ordinary day.',
-      'The morning sets the tone for everything that follows.',
-      'Finding balance between work and rest is essential for wellbeing.',
-      'The simple pleasures in life are often the most meaningful.',
-      'Kindness costs nothing but means everything to those who receive it.',
-    ],
-    business:[
-      'Success in business requires vision, patience, and resilience.',
-      'Clear communication is the foundation of any effective team.',
-      'Every challenge presents an opportunity for growth and innovation.',
-      'Building trust with clients takes time but creates lasting value.',
-      'The most successful entrepreneurs never stop learning.',
-      'A strong culture is the backbone of any thriving organization.',
-    ],
+    travel:['Every journey teaches us something new about the world and ourselves.','The best adventures begin when you step outside your comfort zone.','Traveling opens your mind to different cultures and perspectives.','The road less traveled often leads to the most beautiful destinations.','Each city has its own rhythm and energy that you can feel instantly.','Packing light is the secret to stress-free travel.','The memories you make while traveling last a lifetime.'],
+    food:['Cooking is an art form that brings people together.','The secret to a great dish lies in the quality of its ingredients.','Every culture expresses its identity through its traditional cuisine.','A shared meal is one of the most intimate human experiences.','The best recipes are passed down through generations of families.','Food has the power to transport you to another place and time.'],
+    science:['Modern science has transformed the way we understand the universe.','Every great discovery begins with a simple question.','Technology and innovation go hand in hand with scientific progress.','The natural world holds countless mysteries waiting to be explored.','Scientific thinking requires both creativity and rigorous analysis.','Each experiment brings us closer to understanding the truth.'],
+    daily:['Small daily habits shape the person we ultimately become.','A positive mindset can transform even the most ordinary day.','The morning sets the tone for everything that follows.','Finding balance between work and rest is essential for wellbeing.','The simple pleasures in life are often the most meaningful.','Kindness costs nothing but means everything to those who receive it.'],
+    business:['Success in business requires vision, patience, and resilience.','Clear communication is the foundation of any effective team.','Every challenge presents an opportunity for growth and innovation.','Building trust with clients takes time but creates lasting value.','The most successful entrepreneurs never stop learning.','A strong culture is the backbone of any thriving organization.'],
   };
-
   const topicTemplates=templates[topic]||templates.daily;
-
-  // Build sentences, injecting favorite words naturally
-  const sentences=[];
-  const shuffledTemplates=shuffle([...topicTemplates]);
-  const shuffledWords=shuffle([...wordsToUse]);
-
-  // Pick 4-5 sentences
-  const count=Math.min(5,shuffledTemplates.length);
-  for(let i=0;i<count;i++){
-    sentences.push(shuffledTemplates[i]);
-  }
-
-  // Add sentences that feature the favorite words
+  const sentences=shuffle([...topicTemplates]).slice(0,5);
   const wordSentences=[
     (w)=>`The word "${w.word}" means "${w.translation}" — ${w.example||'a concept worth remembering'}.`,
     (w)=>`When you understand words like "${w.word}" (${w.translation}), your vocabulary truly expands.`,
     (w)=>`"${w.word}" is a powerful word: it translates as "${w.translation}".`,
     (w)=>w.example||`Remember the word "${w.word}" — ${w.translation}.`,
   ];
-
-  shuffledWords.slice(0,Math.min(3,shuffledWords.length)).forEach(w=>{
+  shuffle([...wordsToUse]).slice(0,3).forEach(w=>{
     const fn=wordSentences[Math.floor(Math.random()*wordSentences.length)];
     sentences.splice(Math.floor(Math.random()*sentences.length),0,fn(w));
   });
-
   generatedTextContent=sentences.join(' ');
-
-  // Highlight favorite words in the text
   const favWordSet=new Set(wordsToUse.map(w=>w.word.toLowerCase()));
-  const highlighted=generatedTextContent.replace(/\b([\w'-]+)\b/g,(match)=>{
-    return favWordSet.has(match.toLowerCase())?`<span class="highlight">${match}</span>`:match;
-  });
-
+  const highlighted=generatedTextContent.replace(/\b([\w'-]+)\b/g,(match)=>favWordSet.has(match.toLowerCase())?`<span class="highlight">${match}</span>`:match);
   document.getElementById('generatedText').innerHTML=highlighted;
   document.getElementById('generatedTextCard').style.display='block';
-  showToast(`Текст создан! Использовано слов из избранного: ${Math.min(3,shuffledWords.length)}`);
+  showToast(`Текст создан! Использовано слов из избранного: ${Math.min(3,wordsToUse.length)}`);
 }
 
 let ttsPlaying=false;
-function toggleTTS(){
+function toggleTTS() {
   if(!generatedTextContent) return;
   if(ttsPlaying){speechSynthesis.cancel();ttsPlaying=false;document.getElementById('ttsPlayBtn').innerHTML=`<svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;}
   else{speak(generatedTextContent,document.getElementById('langFrom')?.value||'en');ttsPlaying=true;document.getElementById('ttsPlayBtn').innerHTML=`<svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;setTimeout(()=>{ttsPlaying=false;},60000);}
 }
 
-function copyText(){navigator.clipboard?.writeText(generatedTextContent).then(()=>showToast('Скопировано!')).catch(()=>showToast('Не удалось скопировать'));}
+function copyText() { navigator.clipboard?.writeText(generatedTextContent).then(()=>showToast('Скопировано!')).catch(()=>showToast('Не удалось скопировать')); }
 
 // ===================== TTS =====================
 let voices=[],selectedVoice=null;
-function loadVoices(){voices=speechSynthesis.getVoices();renderVoices();}
+function loadVoices() { voices=speechSynthesis.getVoices();renderVoices(); }
 speechSynthesis.onvoiceschanged=loadVoices;
 
-function renderVoices(){
+function renderVoices() {
   const list=document.getElementById('voiceList');
   if(!list) return;
   if(!voices.length) voices=speechSynthesis.getVoices();
@@ -1415,12 +1338,12 @@ function renderVoices(){
   list.innerHTML=relevant.map(v=>`<div class="filter-chip ${selectedVoice?.name===v.name?'active':''}" onclick="selectVoice(${voices.indexOf(v)})">${v.name.split(' ')[0]}</div>`).join('')||'<span style="font-size:13px;color:var(--text3)">Загружаются...</span>';
 }
 
-function selectVoice(idx){selectedVoice=voices[idx];renderVoices();}
-function speakText(type){const text=type==='input'?document.getElementById('translateInput')?.value:document.getElementById('translateResult')?.textContent;const lang=type==='input'?(document.getElementById('langFrom')?.value||'en'):(document.getElementById('langTo')?.value||'ru');if(text) speak(text,lang);}
-function speakWord(word,lang){speak(word,lang||'en');}
-function speakCustom(){const w=document.getElementById('ttsWord')?.value?.trim();if(w) speak(w,document.getElementById('langFrom')?.value||'en');}
+function selectVoice(idx) { selectedVoice=voices[idx];renderVoices(); }
+function speakText(type) { const text=type==='input'?document.getElementById('translateInput')?.value:document.getElementById('translateResult')?.textContent;const lang=type==='input'?(document.getElementById('langFrom')?.value||'en'):(document.getElementById('langTo')?.value||'ru');if(text) speak(text,lang); }
+function speakWord(word,lang) { speak(word,lang||'en'); }
+function speakCustom() { const w=document.getElementById('ttsWord')?.value?.trim();if(w) speak(w,document.getElementById('langFrom')?.value||'en'); }
 
-function speak(text,lang){
+function speak(text,lang) {
   if(!('speechSynthesis' in window)){showToast('TTS не поддерживается');return;}
   speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(text);
@@ -1431,21 +1354,12 @@ function speak(text,lang){
 }
 
 // ===================== UTILS =====================
-function shuffle(arr){return arr.sort(()=>Math.random()-.5);}
-function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-function openModal(id){document.getElementById(id)?.classList.add('open');}
-function closeModal(id){document.getElementById(id)?.classList.remove('open');}
-
+function shuffle(arr) { return arr.sort(()=>Math.random()-.5); }
+function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function openModal(id) { document.getElementById(id)?.classList.add('open'); }
+function closeModal(id) { document.getElementById(id)?.classList.remove('open'); }
 let toastTimer=null;
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2500);}
-
-// ===================== INIT =====================
-(function init(){
-  const user=getCurrentUser();
-  if(user) startApp();
-  else showAuth();
-  loadVoices();
-})();
+function showToast(msg) { const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2500); }
 </script>
 </body>
 </html>
